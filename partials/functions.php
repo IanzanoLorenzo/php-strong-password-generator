@@ -1,4 +1,5 @@
 <?php
+    //CREO LA STRINGA RANDOMICA
 function RandomString($characters)
     {
         $randString = '';
@@ -12,4 +13,21 @@ function RandomString($characters)
         }
         return $randString;
     }
+
+    //MODIFICO LA CHARACTER POOL
+function CharacterPoolCreate($characters, $numbers, $simbols){
+    $pool = '';
+    if(isset($_GET['charactersCheck']) || isset($_GET['numbersCheck']) || isset($_GET['specialCheck']) ){
+        if(isset($_GET['charactersCheck']) && $_GET['charactersCheck'] === 'on'){
+            $pool .= $characters;
+        };
+        if(isset($_GET['numbersCheck']) && $_GET['numbersCheck'] === 'on'){
+            $pool .= $numbers;
+        };
+        if(isset($_GET['specialCheck']) && $_GET['specialCheck'] === 'on'){
+            $pool .= $simbols ;
+        };
+    };
+    return $pool;
+}
 ?>

@@ -1,30 +1,16 @@
 <?php
     require __DIR__.'/partials/functions.php';
     require __DIR__.'/partials/variables.php';
-    $charactersPool = '';
     session_start();
-    //MODIFICO LA CHARACTER POOL
-    if(isset($_GET['charactersCheck']) || isset($_GET['numbersCheck']) || isset($_GET['specialCheck']) ){
-        if(isset($_GET['charactersCheck']) && $_GET['charactersCheck'] === 'on'){
-            $charactersPool .= $characters;
-        };
-        if(isset($_GET['numbersCheck']) && $_GET['numbersCheck'] === 'on'){
-            $charactersPool .= $numbers;
-        };
-        if(isset($_GET['specialCheck']) && $_GET['specialCheck'] === 'on'){
-            $charactersPool .= $simbols ;
-        };
-    } else{
-        $charactersPool = $characters.$numbers.$simbols;
-    }
+    $charactersPool = CharacterPoolCreate($characters, $numbers, $simbols);
     $newString = '';
     if(isset($_GET['passwordLength']) && $_GET['passwordLength'] != '' && $_GET['passwordLength'] <= 10 && $_GET['passwordLength'] >= 1){
         if(isset($_GET['charactersCheck']) || isset($_GET['numbersCheck']) || isset($_GET['specialCheck']) ){
             $newString = RandomString($charactersPool);
+            $_SESSION['password'] = $newString;
             header("Location: laTuaPassword.php");
         };
     };
-    $_SESSION['password'] = $newString
 ?>
 
 <!DOCTYPE html>
@@ -46,16 +32,16 @@
             <form action="index.php" method="GET" class="row align-items-center">
                 <div class="col-6 row">
                     <label class="col-3" for="passwordLength">Lunghezza</label>
-                    <input class="col-8" type="number" name="passwordLength" id="passwordLength" placeholder="Scegli la lunghezza della password" max="20" min="1" value="<?php echo isset($_GET['passwordLength']) ? $_GET['passwordLength'] : '' ?>">
+                    <input class="col-8" type="number" name="passwordLength" id="passwordLength" placeholder="Scegli la lunghezza della password" max="10" min="1" value="<?php echo isset($_GET['passwordLength']) ? $_GET['passwordLength'] : '' ?>">
                 </div>
                 <div class="col-6 text-start">
                     <h5> Scegli i caratteri da utilizzare </h5>
-                    <input type="checkbox" name="charactersCheck" id=""> <label for="">Lettere</label> <br>
-                    <input type="checkbox" name="numbersCheck" id=""> <label for="">Numeri</label><br>
-                    <input type="checkbox" name="specialCheck"> <label for="">Caratteri speciali</label><br>
+                    <input type="checkbox" name="charactersCheck" id="charactersCheck"> <label for="charactersCheck">Lettere</label> <br>
+                    <input type="checkbox" name="numbersCheck" id="numbersCheck"> <label for="numbersCheck">Numeri</label><br>
+                    <input type="checkbox" name="specialCheck"> <label for="specialCheck">Caratteri speciali</label><br>
                     <h5>Doppie</h5>
-                    <input type="radio" name="doppie" value="on" id="" checked> <label for="">Doppie</label><br>
-                    <input type="radio" name="doppie" value="off" id=""> <label for="">Senza doppie</label>
+                    <input type="radio" name="doppie" value="on" id="doppieOn" checked> <label for="doppieOn">Doppie</label><br>
+                    <input type="radio" name="doppie" value="off" id="doppieOff"> <label for="doppie">Senza doppie</label>
                 </div>
                 <div class="col-12 d-flex align-items-center justify-content-center mt-5">
                     <button class="btn btn-success" type="submit">Crea Password</button>
