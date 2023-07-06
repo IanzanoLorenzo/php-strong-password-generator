@@ -23,9 +23,9 @@
         <div class="my-container container mt-5 text-center p-5">
             <h2>La tua Password</h2>
             <?php if(!empty($password)){ ?>
-                <p>La tua password &egrave;: <strong><?php echo $password ?></strong> segnala e non dimenticarla ;)</p>
+                <p>La tua password &egrave;: <strong><?php echo $password ?></strong> segnala e non dimenticarla.</p>
             <?php } else{?>
-                <p>La tua password &egrave;: <strong>c'hai provato eh?</a></strong> Dai <a href="index.php">torna indietro</a></p>
+                <p>La tua password &egrave;: <strong>c'hai provato eh?</strong> Dai <a href="index.php">torna indietro</a></p>
             <?php }?>
         </div>
         <!-- MESSAGGIO PER I FURBETTINI -->
