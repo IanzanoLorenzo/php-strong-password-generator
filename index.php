@@ -36,18 +36,18 @@
             <h2 class="mb-5">Scegli le specifiche della password</h2>
             <form action="index.php" method="GET" class="row align-items-center">
                 <div class="col-6 row">
-                    <label class="col-3" for="passwordLength">Lunghezza</label>
-                    <input class="col-8" type="number" name="passwordLength" id="passwordLength" placeholder="Scegli la lunghezza della password" max="30" min="1" value="<?php echo isset($_GET['passwordLength']) ? $_GET['passwordLength'] : '' ?>">
+                    <label class="col-3" for="passwordLengthID">Lunghezza</label>
+                    <input class="col-8" type="number" name="passwordLength" id="passwordLengthID" placeholder="Scegli la lunghezza della password" max="30" min="1" value="<?php echo isset($_GET['passwordLength']) ? $_GET['passwordLength'] : '' ?>">
                 </div>
                 <!-- PERSONALIZZAZIONE PASSWORD -->
                 <div class="col-6 text-start">
                     <h5> Scegli i caratteri da utilizzare </h5>
-                    <input type="checkbox" name="charactersCheck" id="charactersCheck"> <label for="charactersCheck">Lettere</label> <br>
-                    <input type="checkbox" name="numbersCheck" id="numbersCheck"> <label for="numbersCheck">Numeri</label><br>
-                    <input type="checkbox" name="specialCheck"> <label for="specialCheck">Caratteri speciali</label><br>
+                    <input type="checkbox" name="charactersCheck" id="charactersCheckID"> <label for="charactersCheckID">Lettere</label> <br>
+                    <input type="checkbox" name="numbersCheck" id="numbersCheckID"> <label for="numbersCheckID">Numeri</label><br>
+                    <input type="checkbox" name="specialCheck" id="specialCheckID"> <label for="specialCheckID">Caratteri speciali</label><br>
                     <h5>Doppie</h5>
                     <input type="radio" name="doppie" value="on" id="doppieOn" checked> <label for="doppieOn">Doppie</label><br>
-                    <input type="radio" name="doppie" value="off" id="doppieOff"> <label for="doppie">Senza doppie</label>
+                    <input type="radio" name="doppie" value="off" id="doppieOff"> <label for="doppieOff">Senza doppie</label>
                 </div>
                 <div class="col-12 d-flex align-items-center justify-content-center mt-5">
                     <button class="btn btn-success" type="submit">Crea Password</button>
