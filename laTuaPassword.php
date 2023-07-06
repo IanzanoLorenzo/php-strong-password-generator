@@ -16,6 +16,7 @@
 </head>
 <body>
     <main>
+        <!-- LANDING PAGE PER LA PASSWORD -->
         <div class="my-container container mt-5 text-center p-0">
             <h1 class="m-0">Generatore di Password</h1>
         </div>
