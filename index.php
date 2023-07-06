@@ -1,10 +1,15 @@
 <?php
     require __DIR__.'/partials/functions.php';
     require __DIR__.'/partials/variables.php';
+    //INIZIO SESSIONE
     session_start();
     $charactersPool = CharacterPoolCreate($characters, $numbers, $simbols);
+    if (isset($_GET['doppie']) && $_GET['doppie'] === 'off' && $_GET['passwordLength'] > strlen($charactersPool)) {
+        $_GET['passwordLength'] = strlen($charactersPool);
+    }
     $newString = '';
-    if(isset($_GET['passwordLength']) && $_GET['passwordLength'] != '' && $_GET['passwordLength'] <= 10 && $_GET['passwordLength'] >= 1){
+    // CONTROLLO PER LA GENERAZIONE DELLA PASSWORD
+    if(isset($_GET['passwordLength']) && $_GET['passwordLength'] != '' && $_GET['passwordLength'] <= 30 && $_GET['passwordLength'] >= 1){
         if(isset($_GET['charactersCheck']) || isset($_GET['numbersCheck']) || isset($_GET['specialCheck']) ){
             $newString = RandomString($charactersPool);
             $_SESSION['password'] = $newString;
@@ -32,8 +37,9 @@
             <form action="index.php" method="GET" class="row align-items-center">
                 <div class="col-6 row">
                     <label class="col-3" for="passwordLength">Lunghezza</label>
-                    <input class="col-8" type="number" name="passwordLength" id="passwordLength" placeholder="Scegli la lunghezza della password" max="10" min="1" value="<?php echo isset($_GET['passwordLength']) ? $_GET['passwordLength'] : '' ?>">
+                    <input class="col-8" type="number" name="passwordLength" id="passwordLength" placeholder="Scegli la lunghezza della password" max="30" min="1" value="<?php echo isset($_GET['passwordLength']) ? $_GET['passwordLength'] : '' ?>">
                 </div>
+                <!-- PERSONALIZZAZIONE PASSWORD -->
                 <div class="col-6 text-start">
                     <h5> Scegli i caratteri da utilizzare </h5>
                     <input type="checkbox" name="charactersCheck" id="charactersCheck"> <label for="charactersCheck">Lettere</label> <br>
@@ -49,10 +55,11 @@
             </form>
             <h2><?php echo isset($_GET['passwordLength']) ? $newString : '' ?></h2>
         </div>
+        <!-- AVVISI DI ERRORE -->
         <?php if(isset($_GET['passwordLength']) && $_GET['passwordLength'] === ''){?>
             <div class="container mt-5 p-0"><div class="alert alert-danger">Inserisci dei valori validi in: lunghezza.</div></div>
         <?php } ?>
-        <?php if(isset($_GET['passwordLength']) &&  $_GET['passwordLength'] > 10 || isset($_GET['passwordLength']) && $_GET['passwordLength'] < 1){?>
+        <?php if(isset($_GET['passwordLength']) &&  $_GET['passwordLength'] > 30 || isset($_GET['passwordLength']) && $_GET['passwordLength'] < 1){?>
             <div class="container mt-5 p-0"><div class="alert alert-danger">La lunghezza deve essere compresa tra 1 e 10.</div></div>
         <?php } ?>
         <?php if(isset($_GET['passwordLength']) && empty($_GET['charactersCheck']) && empty($_GET['numbersCheck']) && empty($_GET['specialCheck']) ){?>

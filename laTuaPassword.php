@@ -28,6 +28,7 @@
                 <p>La tua password &egrave;: <strong>c'hai provato eh?</a></strong> Dai <a href="index.php">torna indietro</a></p>
             <?php }?>
         </div>
+        <!-- MESSAGGIO PER I FURBETTINI -->
         <div class="container mt-5 p-0"><div class="alert alert-success"><?php echo !empty($password) ? 'Password generata con successo.' : 'Successo con la password generata la password con il successo generata.' ?></div></div>
     </main>
 </body>
